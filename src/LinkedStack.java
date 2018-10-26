@@ -36,7 +36,7 @@ public class LinkedStack<T> implements Stack<T> {
 	public int multiPush(T[] els, int k) {
 		int l =0;
 		for(int i=0 ; i<k ; i++) {
-			if(full() || l>els.length) {
+			if(full() || l>=els.length) {
 				break;
 			}
 			push(els[i]);
@@ -52,16 +52,22 @@ public class LinkedStack<T> implements Stack<T> {
 
 		int l=0;
 		for(int i=0 ; i<k ; i++) {
-			if(empty()) {
-				break;
+			if(!empty()) {
+				els[i] = pop();
+				l++;
 			}
-			els[i] = pop();
-			l++;
+		
 		}
 		return l;
 	}
 
-	
+	public void print() {
+		Node<T> tmp = top;
+		while (tmp != null) {
+			System.out.println(tmp.data);
+			tmp = tmp.next;
+		}
+	}
 
 
 }

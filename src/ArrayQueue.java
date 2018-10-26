@@ -43,14 +43,16 @@ public class ArrayQueue<T> implements Queue<T> {
 
 	
 	public int multiEnqueue(T els[], int k){
-		
+		int m=els.length;
 		int l =0;
-		int len = length();
 		for (int i=0 ; i<k ; i++) {
-			if(!full() && els.length >= k) {
+
+			
+			if(!full() && l<k && l<m) {
 				enqueue(els[i]);
 				l++;
 			}
+
 			
 		}
 		
@@ -66,16 +68,16 @@ public class ArrayQueue<T> implements Queue<T> {
 
 	public int multiServe(T[] cls, int k) {
 		int l=0;
-		int time = size;
-		int nSave=0;
-		for (int i=0 ; i<time ; i++ ) {
-			if(size==0 || k<nSave || cls.length<k) {
+		for (int i=0 ; i<k ; i++ ) {
+			if(size==0 || k<l || cls.length<k) {
 				break;
 			}
-			T save = serve();
-			cls[i] = save;
-			nSave++;	
-			l++;
+			
+			if(length()>0 && l>k) {
+				cls[i] = (T)serve();
+				l++;
+			}
+		
 		}
 	
 		
