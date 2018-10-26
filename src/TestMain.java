@@ -3,14 +3,32 @@ public class TestMain<T> {
 
 	public static void main(String[] args) throws Exception {
 		
-		ArrayQueue<Character> a = new ArrayQueue<Character> (4);
+		ArrayQueue<Character> a = new ArrayQueue<Character> (80);
 		
 		a.enqueue('A');
 		a.enqueue('B');
 		a.enqueue('C');
 		a.enqueue('D');
-		a.print();
+		a.enqueue('E');
+		a.enqueue('F');
+		a.enqueue('G');
+		a.enqueue('H');
+		
+		
 		SimpleEncrypt v = new SimpleEncrypt();
+	 v.encrypt(a, 4);
+	 a.print();
+
+	 v.decrypt(a, 4);
+	 System.out.println("====");
+	 a.print();
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 	 
 /*
 		
@@ -94,17 +112,18 @@ public class TestMain<T> {
 		
 		
 		
-		/*
+		
 		
 		
 		
 		SimpleEncrypt A = new SimpleEncrypt();
-		LinkedStack a =(LinkedStack) A.readSentences("test01.txt");
+		LinkedStack j =(LinkedStack) A.readSentences("test01.txt");
+		while(!j.empty()) {
+			ArrayQueue b = (ArrayQueue) j.pop();
+			b.print();
+		}
+
+
 		
-		//ArrayQueue b = (ArrayQueue) a.pop();
-
-		a.print();
-
-		*/
 	}
 }

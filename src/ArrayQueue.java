@@ -85,11 +85,13 @@ public class ArrayQueue<T> implements Queue<T> {
 	}
 	
 	public void print() {
+		int tmp = head;
 		for (int i=0; i< size; i++) {
-			System.out.println(nodes[head]);
-			head++;
+			System.out.print(nodes[tmp]);
+			tmp++;
 		}
 		System.out.println("");
+
 	}
 	
 }
