@@ -17,7 +17,6 @@ public class SimpleEncrypt {
 		    	for(int i=0 ; i<f.length ; i++) {
 		    		a.enqueue(f[i]);
 		    	}
-		    	System.out.println("line");
 		    	lS.push(a);	
 		    	
 		    	f = null;
@@ -42,7 +41,9 @@ public class SimpleEncrypt {
 	if(k==0) {
 		return;
 	}
+	
 		int lim = q.length();
+
 		for(int i=0 ; i<lim/k ; i++) {
 			
 			for(int j=0 ; j<k ; j++) {
@@ -51,8 +52,19 @@ public class SimpleEncrypt {
 			for(int j=0 ; j<k ; j++) {
 				q.enqueue(w.pop());
 			}
+			
 	
 		}
+		if(lim%k > 0) {
+			for(int j=0 ; j<lim%k ; j++) {
+				w.push(q.serve());
+			}
+			for(int j=0 ; j<lim%k ; j++) {
+				q.enqueue(w.pop());
+			}
+		}
+		
+		
 	}
 
 public  static  void decrypt(Queue<Character> q, int k) {
@@ -64,32 +76,31 @@ public  static  void decrypt(Queue<Character> q, int k) {
 public  static  void encrypt(Stack<Queue<Character>> st,int k) {
 	ArrayQueue<Character> u;
 	LinkedStack<Stack<Queue<Character>>> j = new LinkedStack<Stack<Queue<Character>>>();
+	LinkedStack s = new LinkedStack();
 		while(!st.empty()) {
 	
-			ArrayQueue<Character> w = (ArrayQueue<Character>) st.pop();
+			ArrayQueue<Character> w =  (ArrayQueue<Character>) st.pop();
 		encrypt(w,k);
-		j.push((Stack<Queue<Character>>) w);
+		s.push(w);
 	}
-	while(!j.empty()) {
-		st.push((Queue<Character>) j.pop());
+	while(!s.empty()) {
+		st.push((Queue<Character>) s.pop());
 	}	
 } 
 	
 public  static  void decrypt(Stack<Queue<Character>> st, int k) {
 	ArrayQueue<Character> u;
 	LinkedStack<Stack<Queue<Character>>> j = new LinkedStack<Stack<Queue<Character>>>();
+	LinkedStack s = new LinkedStack();
 		while(!st.empty()) {
 	
-			ArrayQueue<Character> w = (ArrayQueue<Character>) st.pop();
+			ArrayQueue<Character> w =  (ArrayQueue<Character>) st.pop();
 		encrypt(w,k);
-		j.push((Stack<Queue<Character>>) w);
+		s.push(w);
 	}
-	while(!j.empty()) {
-		st.push((Queue<Character>) j.pop());
-	}	
-	
+	while(!s.empty()) {
+		st.push((Queue<Character>) s.pop());
+	}
+
 }
-
-
-
 }

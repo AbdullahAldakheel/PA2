@@ -52,6 +52,9 @@ public class LinkedStack<T> implements Stack<T> {
 
 		int l=0;
 		for(int i=0 ; i<k ; i++) {
+			if(els.length<=l) {
+				break;
+			}
 			if(!empty()) {
 				els[i] = pop();
 				l++;
